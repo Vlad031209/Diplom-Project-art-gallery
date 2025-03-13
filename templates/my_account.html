@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - ITAC Art Gallery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='my_account.css') }}">
+    <script>
+        // JavaScript to remove flash messages after 2 seconds
+        window.onload = function() {
+            setTimeout(function() {
+                var flashMessages = document.querySelectorAll('.flash-messages');
+                flashMessages.forEach(function(message) {
+                    message.style.display = 'none';
+                });
+            }, 2000);
+        };
+    </script>
+</head>
+<body>
+
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            <ul>
+                {% for category, message in messages %}
+                    <li class="flash {{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- Header with navigation -->
+<header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('artists') }}">ARTISTS</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('gallery') }}">GALLERY</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('main') }}" class="active">MAIN</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('my_account') }}">MY ACCOUNT</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Top line -->
+<div class="top-line"></div>
+
+<main>
+    <div class="container">
+
+        <!-- =========================
+             FORM 1: Profile Picture
+        ========================= -->
+        <form action="{{ url_for('my_account') }}" method="POST" enctype="multipart/form-data">
+            <div class="profile-pic">
+
+                {% if not account.profile_picture %}
+                    <!-- Show default artist image if no custom pfp is set -->
+                    <div class="uploaded-pic">
+                        <img src="{{ url_for('static', filename='img/artist_default.png') }}"
+                             alt="Default Artist Profile"
+                             class="profile-img">
+                    </div>
+                    <!-- Buttons to change and submit new picture -->
+                    <button type="button" class="change-pfp"
+                            onclick="document.getElementById('profile_picture').click();">
+                        🖌️
+                    </button>
+                    <input type="file" name="profile_picture" id="profile_picture"
+                           style="display:none;" accept="image/*">
+                    <button type="submit" class="submit-pfp">✔</button>
+                {% else %}
+                    <!-- Show user's custom uploaded picture -->
+                    <div class="uploaded-pic">
+                        <img src="{{ url_for('static', filename='uploads/' + account.profile_picture) }}"
+                             alt="Profile Picture"
+                             class="profile-img">
+                    </div>
+                    <button type="button" class="change-pfp"
+                            onclick="document.getElementById('profile_picture').click();">
+                        🖌️
+                    </button>
+                    <input type="file" name="profile_picture" id="profile_picture"
+                           style="display:none;" accept="image/*">
+                    <button type="submit" class="submit-pfp">✔</button>
+                {% endif %}
+
+            </div>
+        </form>
+
+        <!-- Имя пользователя -->
+        <div class="username">
+            <p>{{ session['username'] }}</p>
+        </div>
+
+        <!-- =========================
+             FORM 2: Contact Info, etc.
+        ========================= -->
+        <form action="{{ url_for('my_account') }}" method="POST" enctype="multipart/form-data">
+
+            <div class="contact-info">
+                <p class="contact_info_label">CONTACT INFO:</p>
+                <hr class="custom-hr">
+                <div class="contact-row">
+                    <label for="email">EMAIL:</label>
+                    <input name="email" placeholder="Your email" value="{{ account.email }}">
+                </div>
+                <div class="contact-row">
+                    <label for="phone">PHONE:</label>
+                    <input type="text" name="phone" placeholder="Your phone number" value="{{ account.phone }}">
+                </div>
+                <div class="contact-row">
+                    <label for="instagram">INSTAGRAM:</label>
+                    <input type="text" name="instagram" placeholder="Your Instagram" value="{{ account.instagram }}">
+                </div>
+            </div>
+
+            <!-- Artwork Count -->
+            <div class="artwork-count">
+                <p class="artwork-count-header">Amount of Artworks</p>
+                <p class="count">{{ artwork_count if artwork_count is not none else 0 }}</p>
+            </div>
+
+            <!-- About Me Section -->
+            <div class="about-me">
+                <h3>About Me</h3>
+                <textarea name="about_me" placeholder="Write something about yourself...">{{ account.about_me if account.about_me else '' }}</textarea>
+            </div>
+
+            <!-- Art Type Section -->
+            <p class="type-of-art-header">TYPE OF ART</p>
+            <div class="art-type">
+                <select name="art_type" id="art-type">
+                    <option value="Drawing" {% if account.art_type == 'Drawing' %} selected {% endif %}>Drawing</option>
+                    <option value="Typography Drawing" {% if account.art_type == 'Typography Drawing' %} selected {% endif %}>Typography Drawing</option>
+                    <option value="Photorealism" {% if account.art_type == 'Photorealism' %} selected {% endif %}>Photorealism</option>
+                    <option value="Anamorphic Drawing" {% if account.art_type == 'Anamorphic Drawing' %} selected {% endif %}>Anamorphic Drawing</option>
+                    <option value="Tattoo Drawing" {% if account.art_type == 'Tattoo Drawing' %} selected {% endif %}>Tattoo Drawing</option>
+                    <option value="Hatching" {% if account.art_type == 'Hatching' %} selected {% endif %}>Hatching</option>
+                    <option value="Stippling" {% if account.art_type == 'Stippling' %} selected {% endif %}>Stippling</option>
+                    <option value="Scumbling" {% if account.art_type == 'Scumbling' %} selected {% endif %}>Scumbling</option>
+                    <option value="Doodling" {% if account.art_type == 'Doodling' %} selected {% endif %}>Doodling</option>
+                    <option value="Any" {% if account.art_type == 'Any' %} selected {% endif %}>Any</option>
+                    <option value="Other" {% if account.art_type == 'Other' %} selected {% endif %}>Other</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-btn">
+                <button type="submit">Submit info</button>
+            </div>
+        </form>
+
+        <!-- Прямоугольник MY ICONIC ARTWORK -->
+        <div class="iconic-artwork-box">
+            <p>MY ICONIC ARTWORK</p>
+        </div>
+
+        <!-- =========================
+             FORM 3: Iconic Artwork
+        ========================= -->
+        <form action="{{ url_for('my_account') }}" method="POST" enctype="multipart/form-data">
+            <div class="upload-iconic-artwork-btn">
+                {% if account.iconic_artwork %}
+                    <div class="uploaded-iconic">
+                        <img src="{{ url_for('static', filename='uploads/' + account.iconic_artwork) }}"
+                             alt="Iconic Artwork"
+                             class="iconic-artwork-img">
+                    </div>
+                    <button type="button" class="change-iconic-artwork"
+                            onclick="document.getElementById('iconic_artwork').click();">
+                        🖌️
+                    </button>
+                    <input type="file" name="iconic_artwork" id="iconic_artwork"
+                           accept="image/*" style="display: none;">
+                    <button type="submit" class="submit-iconic-artwork">✔</button>
+                {% else %}
+                    <label for="iconic_artwork" class="iconic-artwork-label">
+                        UPLOAD ICONIC ARTWORK
+                    </label>
+                    <input type="file" name="iconic_artwork" id="iconic_artwork"
+                           accept="image/*" style="display: none;">
+                    <button type="submit" class="submit-iconic-artwork">✔</button>
+                {% endif %}
+            </div>
+        </form>
+
+        <!-- Прямоугольник VIEW MY ARTWORKS -->
+        <div class="view-artworks">
+            <!-- Wrap it in a link -->
+            <a href="{{ url_for('view_artworks') }}" style="text-decoration: none; color: inherit;">
+                <p>VIEW MY ARTWORKS</p>
+            </a>
+        </div>
+
+        <!-- =========================
+             Upload Form for gallery.db
+        ========================= -->
+        <form action="{{ url_for('upload_gallery') }}" method="POST" enctype="multipart/form-data">
+            <div class="add-artwork-btn">
+                <!-- "Plus" button: opens file dialog on click -->
+                <label for="gallery_image" class="plus-box">+</label>
+                <!-- Hidden input for the file -->
+                <input type="file" name="gallery_image" id="gallery_image"
+                       accept="image/*" style="display: none;">
+                <!-- Hidden submit button -->
+                <button type="submit" id="submit-gallery-image" style="display: none;">
+                    Upload Artwork
+                </button>
+            </div>
+        </form>
+
+    </div>
+</main>
+
+<!-- Bottom line -->
+<div class="bottom-line"></div>
+
+<!-- Footer -->
+<footer>
+    <p>© ITAC - ART GALLERY</p>
+    <p>CONTACT US: vdmisko8@gmail.com</p>
+</footer>
+
+<!-- Auto-submit JS for file input -->
+<script>
+  const fileInput = document.getElementById('gallery_image');
+  fileInput.addEventListener('change', () => {
+    // If user selected a file, automatically click the hidden submit button
+    document.getElementById('submit-gallery-image').click();
+  });
+</script>
+
+</body>
+</html>

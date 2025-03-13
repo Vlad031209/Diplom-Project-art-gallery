@@ -1,0 +1,157 @@
+/* Установка шрифта для всего текста */
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Общие стили для хедера */
+header {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Линия под header */
+.top-line {
+    height: 5px;
+    background-color: white;
+}
+
+/* Навигационное меню */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 40px;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+/* Секция логина */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #000;
+    min-height: 100vh;
+}
+
+.form-container h1 {
+    font-size: 70px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container label {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.form-container input {
+    font-size: 25px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: white;
+}
+
+.form-container button {
+    font-size: 30px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #d83232;
+    color: white;
+    border: none;
+    width: 300px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.form-container button:hover {
+    background-color: #ff6f61;
+}
+
+/* Линия над footer */
+.bottom-line {
+    height: 5px;
+    background-color: white;
+}
+
+/* Футер */
+footer {
+    background-color: #000;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 40px;
+}
+
+/* Стили для сообщений flash */
+ul {
+    padding: 0;
+    margin: 20px 0;
+    list-style: none;
+}
+
+li {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.danger {
+    color: red;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.success {
+    color: green;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.warning {
+    color: orange;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+}
+
+.info {
+    color: blue;
+    background-color: #cce5ff;
+    border: 1px solid #b8daff;
+}

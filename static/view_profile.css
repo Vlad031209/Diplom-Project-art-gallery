@@ -1,0 +1,332 @@
+/* =========================
+   Basic Page Styles
+========================= */
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.top-line {
+    height: 5px;
+    background-color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+.bottom-line {
+    height: 5px;
+    background-color: white;
+    margin-top: 175px;
+}
+
+footer {
+    background-color: #000;
+    text-align: center;
+    width: 100%;
+    /* Увеличиваем отступ сверху, чтобы футер был ниже */
+    margin-top: 10px;
+    line-height: 1;
+}
+
+footer p {
+    margin: 0;
+    font-size: 40px;
+    padding: 10px;
+}
+
+/* =========================
+   Top Info (Amount + Type)
+========================= */
+.top-info {
+    display: flex;
+    justify-content: center; /* по центру */
+    align-items: center;
+    gap: 40px;               /* расстояние между блоками */
+    margin: 40px auto;
+}
+
+.artwork-count-box,
+.type-of-art-box {
+    background-color: #ff3131;
+    color: #fff;
+    padding: 20px 30px;
+    border-radius: 25px;
+    font-size: 25px;
+    text-align: center;
+    min-width: 250px;
+}
+
+.artwork-count-box p,
+.type-of-art-box p {
+    margin: 10px 0;
+}
+
+.count,
+.type-text {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* =========================
+   Main Content (3 columns)
+========================= */
+.main-content {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1600px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    gap: 50px;
+}
+
+
+.left-column {
+    margin-top: -25px;
+    flex: 1;
+    margin-left: -550px;
+}
+
+.center-column {
+    flex: 2;
+    margin-top: 50px;
+    margin-right: -800px;
+}
+
+.right-column {
+    flex: 1;
+    margin-right: -500px;
+}
+
+/* =========================
+   Left Column
+========================= */
+.profile-pic {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 20px auto;
+}
+
+.profile-pic label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #ff3131;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 300px;
+    font-size: 25px;
+    cursor: default; /* read-only */
+}
+
+.uploaded-pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.username {
+    font-size: 40px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Contact Info (read-only) */
+.contact-info {
+    font-size: 25px;
+    text-align: left;
+    margin: 0 auto;
+    width: 300px;
+    position: relative;
+    background: none;
+    padding: 0;
+    margin-top: 40px;
+    width: 400px;
+}
+
+.contact_info_label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    justify-content: space-between;
+}
+
+.custom-hr {
+    height: 5px;
+    width: 100%;
+    background-color: white;
+    border: none;
+    margin: 10px 0 30px 0;
+}
+
+.contact-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.contact-row label {
+    width: 170px;
+    margin-right: 10px;
+}
+
+.contact-row span {
+    flex: 1;
+    font-size: 25px;
+    text-align: left;
+}
+
+/* =========================
+   Center Column (About Me)
+========================= */
+.about-me {
+    background-color: #ff3131;
+    color: white;
+    border-radius: 25px;
+    font-size: 25px;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 30px;
+    width: 800px;
+}
+
+.about-me h3 {
+    margin: 0 0 15px 0;
+    font-size: 30px;
+}
+
+/* Увеличиваем блок для текста и делаем его ниже */
+.about-me-text {
+    background-color: #ff3131;
+    color: white;
+    width: 100%;
+    max-width: 700px; /* Шире, чем раньше */
+    height: 400px;    /* Выше, чем раньше */
+    margin: 0 auto;
+    overflow-y: auto;
+    text-align: left;
+    font-size: 35px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/* =========================
+   Right Column (Iconic Artwork)
+========================= */
+.iconic-artwork-box {
+    background-color: #ff3131;
+    color: white;
+    border-radius: 25px;
+    font-size: 25px;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 400px;
+    margin-left: 200px;
+}
+
+/* Увеличиваем контейнер под Iconic Artwork */
+.iconic-artwork-container {
+    position: relative;
+    width: 700px;  /* Шире */
+    height: 400px; /* Выше */
+    background-color: #ff3131;
+    border-radius: 25px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.uploaded-iconic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 400px;
+    z-index: 2;
+}
+
+.iconic-artwork-img {
+    width: 700px;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.iconic-artwork-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 400px;
+    font-size: 25px;
+    color: #fff;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    cursor: default;
+}
+
+.view-artworks-other {
+  background-color: #ff3131;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 30px;
+  text-align: center;
+  align-items: center;
+  height: 60px;
+  width: 350px;
+  margin-top: 40px;
+  margin-bottom: -80px;
+  margin-left: 220px;
+}
+.view-artworks-other p {
+  margin: 0;
+}

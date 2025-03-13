@@ -1,0 +1,148 @@
+/* =========================
+   artists.css
+========================= */
+
+/* 1) Base styling for html/body */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;              /* For the sticky footer flex layout */
+    background-color: #000;
+    color: #fff;
+    font-family: 'Times New Roman', serif;
+}
+
+/* 2) Body as a flex container */
+body {
+    display: flex;
+    flex-direction: column;    /* header -> main -> footer in a column */
+}
+
+/* 3) Header & top-line */
+header {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+    font-size: 40px;
+    position: relative; /* or 'fixed' if you want hide-on-scroll */
+    margin-bottom: 10px;
+}
+
+.top-line {
+    height: 5px;
+    background-color: white;
+}
+
+/* 4) Navigation bar */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+/* 5) Main area: grows to fill leftover space for sticky footer */
+main {
+    flex: 1;                    /* crucial for sticky footer */
+    margin: 30px auto;         /* centers content, 30px top/bottom margin */
+    max-width: 800px;
+    text-align: center;
+}
+
+/* 6) Bottom line (optional) */
+.bottom-line {
+    height: 5px;
+    background-color: white;
+}
+
+/* 7) Footer pinned at the bottom if content is short (sticky footer) */
+footer {
+    background-color: #000;
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+}
+footer p {
+    margin-top: 50px;
+    font-size: 40px;
+    padding: 0;
+    line-height: 0.25;
+}
+
+/* 8) Search bar near the top */
+.search-bar {
+    margin: 20px 0;
+}
+.search-bar form {
+    display: inline-block;
+}
+/* Make the input taller, bigger font, etc. */
+.search-bar input[type="text"] {
+    padding: 15px;               /* was 10px; increased top/bottom padding */
+    font-size: 20px;             /* was 16px; larger font */
+    width: 350px;                /* slightly wider if desired */
+    border-radius: 8px;          /* was 5px; slightly more rounded corners */
+    border: 1px solid #ccc;
+    outline: none;
+    font-weight: bold;
+}
+/* Make the button taller, bigger font, etc. */
+.search-bar button {
+    padding: 15px 30px;          /* was 10px 20px; increased for a bigger button */
+    font-size: 20px;             /* was 16px; larger font */
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 8px;          /* was 5px; slightly more rounded corners */
+    cursor: pointer;
+    font-weight: bold;
+}
+.search-bar button:hover {
+    background-color: #a21251;
+}
+
+/* 9) Artists list container */
+.artists-list {
+    margin-top: 20px;
+}
+
+/* 10) Each artist row */
+.artist-item {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    border-bottom: 1px solid #666; /* optional divider line */
+    padding-bottom: 10px;
+}
+
+/* 11) The small pfp on the left (INCREASED SIZE) */
+.artist-pfp img {
+    width: 90px;  /* was 50px */
+    height: 90px; /* was 50px */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+/* 12) The username link (INCREASED FONT) */
+.artist-username a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 30px; /* was 20px */
+    font-weight: bold;
+}
+.artist-username a:hover {
+    color: #ff6f61;
+}

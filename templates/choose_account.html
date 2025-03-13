@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='choose_account.css') }}">
+</head>
+<body>
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="flash {{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <section class="choose-account">
+        <h1>Itac - art gallery</h1>
+        <a href="{{ url_for('login') }}"><button>Login</button></a>
+        <a href="{{ url_for('register') }}"><button>Register</button></a>
+    </section>
+
+    <!-- Нижняя линия -->
+    <div class="bottom-line"></div>
+
+    <!-- Футер с контактной информацией -->
+    <footer>
+        <p>© ITAC - ART GALLERY</p>
+        <p>CONTACT US: vdmisk08@gmail.com | +971502303918</p>
+    </footer>
+
+    <!-- Hide flash messages after 2 seconds -->
+    <script>
+      window.onload = function() {
+        setTimeout(function() {
+          const flashContainer = document.querySelector('.flash-messages');
+          if (flashContainer) {
+            flashContainer.style.display = 'none';
+          }
+        }, 2000);
+      };
+    </script>
+
+</body>
+</html>

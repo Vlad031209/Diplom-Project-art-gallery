@@ -1,0 +1,94 @@
+<!-- templates/view_artworks.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Artworks</title>
+    <!-- Use the same gallery.css or create a separate one -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='view_artworks.css') }}">
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('artists') }}">ARTISTS</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('gallery') }}">GALLERY</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('main') }}" class="active">MAIN</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('my_account') }}">MY ACCOUNT</a></li>
+        </ul>
+    </nav>
+    <div class="top-line"></div>
+</header>
+
+<main>
+    <!-- Same multi-column container as in gallery.html -->
+    <div class="gallery-container">
+        {% for item in gallery_items %}
+            {# Optionally do the left/center/right logic #}
+            {% if loop.index % 3 == 0 %}
+                {% set position = 'right' %}
+            {% elif loop.index % 2 == 0 %}
+                {% set position = 'center' %}
+            {% else %}
+                {% set position = 'left' %}
+            {% endif %}
+
+            <div class="gallery-item {{ position }}">
+                <!-- Picture -->
+                <div class="picture">
+                    <img
+                      src="data:{{ item.image_type }};base64,{{ item.encoded_data }}"
+                      alt="Artwork {{ loop.index }}"
+                    >
+                </div>
+
+                <!-- Info block: if you want a user-info block or not -->
+                <div class="user-info">
+                    {% if item.pfp %}
+                        <img class="pfp"
+                             src="{{ url_for('static', filename='uploads/' + item.pfp) }}"
+                             alt="{{ item.username }}">
+                    {% else %}
+                        <div class="pfp placeholder"></div>
+                    {% endif %}
+
+                    <!-- Since it's the same user, you might not need a link. -->
+                    <span class="username">{{ item.username }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</main>
+
+<div class="bottom-line"></div>
+
+<footer>
+    <p>© ITAC - ART GALLERY</p>
+    <p>CONTACT US: vdmisko8@gmail.com</p>
+</footer>
+
+<!-- (Optional) Hide-on-scroll script, same as in gallery.html -->
+<script>
+  let lastScrollTop = 0;
+  const header = document.querySelector("header");
+
+  window.addEventListener("scroll", function() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScrollTop) {
+      header.style.top = "-80px";
+    } else {
+      header.style.top = "0";
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  });
+</script>
+
+</body>
+</html>

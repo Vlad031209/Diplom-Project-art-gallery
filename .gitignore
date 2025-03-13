@@ -1,0 +1,53 @@
+# Исключаем системные каталоги Windows и OneDrive
+Application Data/
+Cookies/
+Documents/
+Local Settings/
+My Documents/
+My Music/
+My Pictures/
+My Videos/
+PrintHood/
+Recent/
+SendTo/
+# Ignore system directories (already included in your file)
+Application Data/
+Cookies/
+Documents/
+Local Settings/
+My Documents/
+My Music/
+My Pictures/
+My Videos/
+PrintHood/
+Recent/
+SendTo/
+
+# Ignore Python virtual environments
+venv/
+.venv/
+
+# Ignore PyCharm and VS Code settings
+.idea/
+.vscode/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore log files and temp files
+*.log
+*.tmp
+
+# Ignore SQLite database files (if not needed in the repo)
+*.sqlite3
+*.db
+
+# Ignore static file uploads (if they shouldn't be tracked)
+static/uploads/
+media/
+
+# Ignore environment variables and secrets (if applicable)
+.env

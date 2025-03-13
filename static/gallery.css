@@ -1,0 +1,165 @@
+/* Base styles */
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fixed header with hide-on-scroll */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+    font-size: 40px;
+    z-index: 999999999999999;
+    transition: top 0.3s ease; /* smooth slide effect */
+}
+
+/* The top-line is inside header, so let's keep it relative or absolute */
+.top-line {
+    height: 5px;
+    background-color: white;
+    /* If you want it immediately under the nav, you can do margin-top: 10px, or position absolute. */
+    margin-top: 10px;
+}
+
+/* Because the header is fixed, we need top margin on main so it's not hidden */
+main {
+    margin-top: 100px; /* Adjust this to match the header + top-line total height */
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+/* Bottom line at page bottom */
+.bottom-line {
+    height: 5px;
+    background-color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #000;
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+    bottom: 0;
+    padding: 20px 0;
+}
+
+footer p {
+    margin-top: 50px;
+    font-size: 40px;
+    padding: 0;
+    line-height: 0.25;
+}
+
+/* ===== Gallery (multi-column) ===== */
+.gallery-container {
+    column-count: 3;   /* 3 columns */
+    column-gap: 30px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.gallery-item {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 20px;
+    border: 2px solid #fff;
+    background-color: transparent;
+    box-sizing: border-box;
+}
+
+.gallery-item .picture {
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.gallery-item .picture img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.user-info {
+    background-color: black;
+    color: white;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.user-info .pfp {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.user-info .pfp.placeholder {
+    background-color: #555;
+}
+
+/* Link with username */
+.user-info .username a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.user-info .username a:hover {
+    color: #ff6f61;
+}
+
+/* optional position classes */
+.gallery-item.left { }
+.gallery-item.center { }
+.gallery-item.right { }
+
+@media (max-width: 1200px) {
+  .gallery-container {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 800px) {
+  .gallery-container {
+    column-count: 1;
+  }
+}

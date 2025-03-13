@@ -1,0 +1,96 @@
+<!-- templates/artists.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artists</title>
+    <!-- Link to your artists.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='artists.css') }}">
+    <style>
+        .top-line, .bottom-line {
+            width: 100%;
+            height: 5px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('artists') }}" class="active">ARTISTS</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('gallery') }}">GALLERY</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('main') }}">MAIN</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('my_account') }}">MY ACCOUNT</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="top-line"></div>
+
+<main>
+    <!-- Search form at the top -->
+    <div class="search-bar">
+        <form action="{{ url_for('artists') }}" method="GET">
+            <input type="text" name="q" placeholder="Search for an artist..."
+                   value="{{ q|default('', true) }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Artists list container -->
+    <div class="artists-list">
+        {% for artist in all_artists %}
+        <div class="artist-item">
+            <div class="artist-pfp">
+                {% if artist.profile_picture %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ artist.profile_picture) }}"
+                         alt="{{ artist.username }}">
+                {% else %}
+                    <!-- If no pfp, show the default artist image -->
+                    <img src="{{ url_for('static', filename='img/artist_default.png') }}"
+                         alt="Default Artist">
+                {% endif %}
+            </div>
+
+            <div class="artist-username">
+                <a href="{{ url_for('view_user_profile', username=artist.username) }}">
+                    {{ artist.username }}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+<div class="bottom-line"></div>
+
+<footer>
+    <p>© ITAC - ART GALLERY</p>
+    <p>CONTACT US: vdmisko8@gmail.com</p>
+</footer>
+
+<script>
+  let lastScrollTop = 0;
+  const header = document.querySelector("header");
+
+  window.addEventListener("scroll", function() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > lastScrollTop) {
+      header.style.top = "-80px";
+    } else {
+      header.style.top = "0";
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  });
+</script>
+
+</body>
+</html>

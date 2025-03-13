@@ -1,0 +1,554 @@
+/* =========================
+   Basic styles
+========================= */
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+    font-size: 40px;
+}
+
+/* Top line */
+.top-line {
+    height: 5px;
+    background-color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+.container {
+    margin-top: 80px;
+    text-align: center;
+}
+
+/* =========================
+   Profile Picture Section
+========================= */
+.profile-pic {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px 0 20px 80px; /* Слева 40px */
+}
+
+/* Placeholder-круг "PROFILE PICTURE" */
+.profile-pic label {
+    display: block;
+    width: 300px;
+    height: 300px;
+    background-color: #ff3131;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 300px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+/* Блок для уже загруженной pfp */
+.uploaded-pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden; /* Обрезка лишнего */
+    z-index: 2;
+}
+
+/* Картинка pfp */
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Кнопка "Change Picture" */
+.change-pfp {
+    position: absolute;
+    top: 10px;      /* Расположение по вертикали */
+    right: 10px;    /* Расположение по горизонтали */
+    z-index: 3;     /* Чтобы кнопка была поверх картинки (у картинки z-index: 2) */
+    background-color: white;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 275px;
+}
+
+.change-pfp:hover {
+    background-color: #c0392b;
+}
+/* =========================
+   Прямоугольник "MY ICONIC ARTWORK"
+========================= */
+.iconic-artwork-box {
+    background-color: #ff3131;
+    color: white;
+    padding: 0;               /* Можно вернуть padding, если нужно */
+    border-radius: 25px;
+    font-size: 30px;
+    text-align: center;
+    margin-left: 1950px;      /* Позиция по горизонтали (как было у вас) */
+    height: 100px;
+    width: 300px;
+    margin-top: -850px;       /* Позиция по вертикали (как было) */
+    text: bold;
+}
+
+/* =========================
+   Iconic Artwork Section
+========================= */
+/* Блок с надписью "MY ICONIC ARTWORK" (если нужен) */
+.upload-iconic-artwork-btn {
+    position: relative;
+    width: 600px;             /* Ширина контейнера */
+    height: 500px;            /* Высота контейнера */
+    background-color: #ff3131;/* Красный фон */
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 25px;      /* Скруглённые углы, если нужно */
+    margin-left: 1800px;      /* Ваши смещения (меняйте при необходимости) */
+    margin-top: -520px;        /* Ваши смещения (меняйте при необходимости) */
+    margin-bottom: -100px;
+}
+
+/* Placeholder "UPLOAD ICONIC ARTWORK" (аналог label в profile-pic) */
+.upload-iconic-artwork-btn {
+    position: relative;
+    width: 600px;             /* Ширина контейнера */
+    height: 500px;            /* Высота контейнера */
+    background-color: #ff3131;/* Красный фон */
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 25px;      /* Скруглённые углы, если нужно */
+    margin-left: 1800px;      /* Ваши смещения (меняйте при необходимости) */
+    margin-bottom: 10px;
+}
+
+/* Placeholder "UPLOAD ICONIC ARTWORK" (аналог label в profile-pic) */
+.upload-iconic-artwork-btn label.iconic-artwork-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 500px;       /* Для вертикального центрирования текста */
+    font-size: 25px;
+    color: #fff;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    z-index: 1;               /* Ниже, чем картинка */
+    /* background-color: #ff3131; <-- можно не указывать, так как задано у родителя */
+}
+
+/* Блок для уже загруженной iconic artwork (аналог .uploaded-pic) */
+.uploaded-iconic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;             /* Должен совпадать с размерами родителя */
+    height: 500px;
+    z-index: 2;               /* Выше, чем label, перекрывает надпись */
+    /* Если хотите, можете добавить border-radius: 25px; */
+}
+
+/* Сама загруженная картинка */
+.iconic-artwork-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* «Заливает» контейнер, сохраняя пропорции */
+    display: block;
+    border-radius: 25px;
+}
+
+/* Кнопка для смены файла "Change Artwork" */
+.change-iconic-artwork {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;    /* Выше картинки */
+    background-color: white;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-right: 610px;
+}
+
+/* Скрываем input[type="file"] */
+input[type="file"] {
+    display: none;
+}
+
+/* =========================
+   Contact Info
+========================= */
+.username {
+    font-size: 40px;
+    text-align: center;
+    margin-left: -2080px;
+    color: white;
+}
+
+.contact-info {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 130px;
+    margin-top: 125px;
+    margin-bottom: 10px;
+}
+
+/* Горизонтальная линия под контактной информацией */
+.custom-hr {
+    height: 5px;
+    width: 400px;
+    background-color: white;
+    margin: 10px 0 45px 100px;
+    margin-left: -50px;
+}
+
+/* Строки ввода (email, phone, instagram) */
+.contact-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: -50px;
+}
+
+.contact-row label {
+    width: 150px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.contact-row input {
+    padding: 20px;
+    font-size: 25px;
+    width: 250px;
+    margin: 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: white;
+    margin-left: 35px;
+}
+
+/* =========================
+   Artwork Count
+========================= */
+.artwork-count {
+    padding: 15px 30px;
+    margin-bottom: 50px;
+    height: 60px;
+    width: 250px;
+    align-items: center;
+    margin-top: -150px;
+    margin-left: 850px;
+}
+
+.artwork-count p {
+    background-color: #ff3131;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 30px;
+    margin-top: -825px;
+    color: white;
+}
+
+/* The heading: "Amount of Artworks" */
+.artwork-count-header {
+    background-color: #ff3131;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 30px;
+    color: white;
+    margin: 0;        /* No negative margin */
+}
+
+/* The actual integer count */
+.count {
+    /* Remove the negative margin inherited from .artwork-count p */
+    margin-top: 0 !important;
+    background-color: transparent !important;
+    /* Then push it down from the label using position relative */
+    position: relative;
+    top: 10px; /* or however many pixels you want below the label */
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 38px !important;
+    color: white;
+    margin-bottom: 10px; /* optional spacing below the integer */
+    font-weight: bold;
+}
+
+/* =========================
+   About Me Section
+========================= */
+.about-me {
+    background-color: #ff3131;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+    height: 60px;
+    width: 250px;
+    margin-left: 1115px;
+    margin-top: -680px;
+}
+
+.about-me h3 {
+    margin: 0 0 15px 0;
+    font-size: 30px;
+}
+
+.about-me textarea {
+    margin-top: 50px;
+    height: 500px;
+    width: 750px;
+    text-align: left;
+    font-size: 30px;
+    margin-left: -250px;
+    justify-content: center;
+    margin-bottom: -50px;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+/* =========================
+   Artwork Header / Art Type
+========================= */
+.artwork-header {
+    background-color: #ff3131;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 30px;
+    margin-bottom: -80px;
+    height: 60px;
+    width: 150px;
+    text-align: center;
+    margin-top: -30px;
+}
+
+.type-of-art-header {
+    background-color: #ff3131;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 30px;
+    margin-bottom: 30px;
+    height: 60px;
+    width: 150px;
+    text-align: center;
+    margin-left: 1400px;
+    margin-top: -400px;
+    margin-bottom: 30px;
+}
+
+.art-type {
+    margin-left: -400px;
+    margin-top: -20px;
+}
+
+.art-type select {
+    padding: 20px;
+    margin: 0;
+    font-size: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: white;
+    margin-left: 890px;
+}
+
+.art-type option {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+/* =========================
+   View Artworks Section
+========================= */
+.view-artworks {
+    background-color: #ff3131;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 30px;
+    text-align: center;
+    align-items: center;
+    margin-left: 1930px;
+    height: 60px;
+    width: 350px;
+    margin-top: 40px;
+    margin-bottom: -80px;
+}
+
+/* =========================
+   Artwork Upload (плюсик)
+========================= */
+.add-artwork-btn {
+    height: 100px;
+    width: 100px;
+    font-size: 50px;
+    margin-top: -615px;
+    margin-left: 50px;
+    margin-bottom: 200px;
+}
+
+/* =========================
+   Прочие элементы
+========================= */
+.iconic-artwork-box,
+.view-artworks {
+    display: flex;            /* Включаем flex-контейнер */
+    align-items: center;      /* Выравниваем по вертикали */
+    justify-content: center;  /* Выравниваем по горизонтали */
+    text-align: center;       /* На случай переноса строк */
+    margin-bottom: 615px;
+}
+
+textarea {
+    width: 400px;
+    height: 100px;
+    background-color: #ff3131;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 20px;
+    text-align: center;
+}
+
+select {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #6e8e94;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+button:hover {
+    background-color: #c0392b;
+}
+
+/* Прячет input[type="file"] */
+input[type="file"] {
+    display: none;
+}
+
+/* Кнопка с плюсом */
+.plus-box {
+    padding: 10px 20px;
+    font-size: 35px;
+    background-color: #ff3131;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    width: 120px;
+    margin-top: 750px;
+    margin-left: 1200px;
+    justify-content: center;
+}
+
+.plus-box:hover {
+    background-color: #c0392b;
+}
+
+/* =========================
+   Разные кнопки
+========================= */
+.submit-btn {
+    margin-top: 800px; /* Небольшой отступ снизу */
+    text-align: center;
+    margin-right: 2000px;
+}
+
+
+.submit-pfp {
+    text-align: center;
+    margin-bottom: -50px;
+    margin-right: 1700px;
+    margin-top: 284px;
+    background-color: #6e8e94;
+    height: 45px;
+}
+
+.submit-iconic-artwork {
+    margin-right: 900px;
+    margin-left: -75px;
+    margin-top: -200px;
+}
+
+/* =========================
+   Низ страницы
+========================= */
+.bottom-line {
+    height: 5px;
+    background-color: white;
+    margin-top: -200px;
+}
+
+footer {
+    background-color: #000;
+    text-align: center;
+    padding: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 40px;
+    padding: 10px;
+}

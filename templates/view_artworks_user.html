@@ -1,0 +1,85 @@
+<!-- templates/view_artworks_user.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ artist }}'s Artworks</title>
+  <!-- Reuse gallery.css or make a separate CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='gallery.css') }}">
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+      <li>|</li>
+      <li><a href="{{ url_for('artists') }}">ARTISTS</a></li>
+      <li>|</li>
+      <li><a href="{{ url_for('gallery') }}">GALLERY</a></li>
+      <li>|</li>
+      <li><a href="{{ url_for('main') }}">MAIN</a></li>
+      <li>|</li>
+      <li><a href="{{ url_for('my_account') }}">MY ACCOUNT</a></li>
+    </ul>
+  </nav>
+  <div class="top-line"></div>
+</header>
+
+<main>
+  <div class="gallery-container">
+    {% for item in gallery_items %}
+      {% if loop.index % 3 == 0 %}
+        {% set position = 'right' %}
+      {% elif loop.index % 2 == 0 %}
+        {% set position = 'center' %}
+      {% else %}
+        {% set position = 'left' %}
+      {% endif %}
+
+      <div class="gallery-item {{ position }}">
+        <div class="picture">
+          <img src="data:{{ item.image_type }};base64,{{ item.encoded_data }}" alt="Artwork {{ loop.index }}">
+        </div>
+
+        <div class="user-info">
+          {% if item.pfp %}
+            <img class="pfp"
+                 src="{{ url_for('static', filename='uploads/' + item.pfp) }}"
+                 alt="{{ item.username }}">
+          {% else %}
+            <div class="pfp placeholder"></div>
+          {% endif %}
+          <span class="username">{{ item.username }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</main>
+
+<div class="bottom-line"></div>
+
+<footer>
+  <p>© ITAC - ART GALLERY</p>
+  <p>CONTACT US: vdmisko8@gmail.com</p>
+</footer>
+
+<!-- optional hide-on-scroll script -->
+<script>
+  let lastScrollTop = 0;
+  const header = document.querySelector("header");
+
+  window.addEventListener("scroll", function() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScrollTop) {
+      header.style.top = "-80px";
+    } else {
+      header.style.top = "0";
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  });
+</script>
+
+</body>
+</html>

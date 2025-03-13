@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Example: custom font -->
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet">
+    <!-- Your CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+
+<!-- Top line -->
+<div class="top-line"></div>
+
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-messages">  <!-- IMPORTANT: class="flash-messages" -->
+      <ul>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+{% endwith %}
+
+<!-- Login form -->
+<section class="form-container">
+    <h1>Login</h1>
+    <form method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</section>
+
+<!-- Bottom line -->
+<div class="bottom-line"></div>
+
+<!-- Footer -->
+<footer>
+    <p>© ITAC - ART GALLERY</p>
+    <p>CONTACT US: vdmisk08@gmail.com | +971502303918</p>
+</footer>
+
+<!-- Hide flash messages after 2 seconds -->
+<script>
+  window.onload = function() {
+    setTimeout(function() {
+      const flashContainer = document.querySelector('.flash-messages');
+      if (flashContainer) {
+        flashContainer.style.display = 'none';
+      }
+    }, 2000);
+  };
+</script>
+
+</body>
+</html>

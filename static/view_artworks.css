@@ -1,0 +1,166 @@
+/* =========================
+   Base Page Styles
+========================= */
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fixed header with hide-on-scroll (optional) */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+    font-size: 40px;
+    z-index: 99999999;
+    transition: top 0.3s ease; /* smooth slide effect */
+}
+
+.top-line {
+    height: 5px;
+    background-color: white;
+    margin-top: 10px; /* or position: absolute; bottom: 0; if you prefer */
+}
+
+main {
+    margin-top: 100px; /* so content isn’t hidden behind fixed header */
+}
+
+/* Navigation bar */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+/* Bottom line at the bottom of the page */
+.bottom-line {
+    height: 5px;
+    background-color: white;
+}
+
+footer {
+    background-color: #000;
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+footer p {
+    margin-top: 50px;
+    font-size: 40px;
+    padding: 0;
+    line-height: 0.25;
+}
+
+/* =========================
+   Multi-column Gallery Layout
+========================= */
+.gallery-container {
+    column-count: 3;    /* 3 columns */
+    column-gap: 30px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.gallery-item {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 20px;
+    border: 2px solid #fff;
+    background-color: transparent;
+    box-sizing: border-box;
+}
+
+.gallery-item .picture {
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.gallery-item .picture img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Info block below each image */
+.user-info {
+    background-color: black;
+    color: white;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Profile picture circle */
+.user-info .pfp {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.user-info .pfp.placeholder {
+    background-color: #555;
+}
+
+/* Link with username */
+.user-info .username a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.user-info .username a:hover {
+    color: #ff6f61;
+}
+
+/* Optional position classes if you want to do left/center/right logic */
+.gallery-item.left {}
+.gallery-item.center {}
+.gallery-item.right {}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+  .gallery-container {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 800px) {
+  .gallery-container {
+    column-count: 1;
+  }
+}

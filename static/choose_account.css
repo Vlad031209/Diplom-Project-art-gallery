@@ -1,0 +1,128 @@
+/* Установка шрифта для всего текста */
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Общие стили для хедера */
+header {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Линия под header */
+.top-line {
+    height: 5px;
+    background-color: white;
+}
+
+/* Навигационное меню */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 40px;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+/* Секция выбора аккаунта */
+.choose-account {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #000;
+    min-height: 100vh;
+}
+
+.choose-account h1 {
+    font-size: 70px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.choose-account button {
+    font-size: 30px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #d83232;
+    color: white;
+    border: none;
+    width: 300px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.choose-account button:hover {
+    background-color: #ff6f61;
+}
+
+/* Линия над footer */
+.bottom-line {
+    height: 5px;
+    background-color: white;
+}
+
+/* Футер */
+footer {
+    background-color: #000;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 40px;
+}
+
+.flash-messages {
+    margin: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.flash {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.flash.warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.flash.info {
+    background-color: #cce5ff;
+    color: #004085;
+}

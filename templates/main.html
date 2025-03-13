@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .flash-messages {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+        }
+        .flash-messages ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .flash-messages .flash {
+            padding: 15px;
+            margin: 5px 0;
+            color: white;
+            border-radius: 5px;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+        .flash-messages .flash.success {
+            background-color: green;
+        }
+        .flash-messages .flash.danger {
+            background-color: red;
+        }
+        .flash-messages .flash.warning {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Flash Message Section -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="flash {{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Header with navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+                <li>|</li>
+                <li><a href="{{ url_for('artists') }}">ARTISTS</a></li>
+                <li>|</li>
+                <li><a href="{{ url_for('gallery') }}">GALLERY</a></li>
+                <li>|</li>
+                <li><a href="{{ url_for('main') }}" class="active">MAIN</a></li>
+                <li>|</li>
+                <li><a href="{{ url_for('my_account') }}">MY ACCOUNT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Top line -->
+    <div class="top-line"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Left Images -->
+            <div class="hero-images">
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='photos/painting.jpg') }}" alt="Painting" class="painting-image">
+                </div>
+                <div class="hero-image-artist">
+                    <img src="{{ url_for('static', filename='photos/artist.jpg') }}" alt="Artist" class="artist-image">
+                </div>
+            </div>
+
+            <!-- About Us Text -->
+            <div class="hero-info">
+                <h1>ART GALLERY</h1>
+                <div class="about">
+                    <h2>ABOUT US</h2>
+                    <p>
+                        Itac is a digital haven for art enthusiasts, offering a curated collection of online exhibitions showcasing a diverse range of artistic styles and perspectives. This virtual gallery transcends geographical boundaries, connecting art lovers with a global community of artists and providing unparalleled access to a wealth of creative expression.
+                    </p>
+                    <p>
+                        Beyond simply viewing artwork, itac fosters a deeper engagement with the art world. The platform encourages interaction through features such as artist interviews, behind-the-scenes insights, and opportunities to connect with fellow art enthusiasts. Whether you're a seasoned collector or simply curious about the art world, itac offers a unique and enriching experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom line -->
+    <div class="bottom-line"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© ITAC - ART GALLERY</p>
+        <p>CONTACT US: vdmisko8@gmail.com</p>
+    </footer>
+
+    <script>
+        // Automatically hide flash messages after 3 seconds
+        window.onload = function() {
+            const flashMessages = document.querySelectorAll('.flash');
+            flashMessages.forEach(function(message) {
+                setTimeout(function() {
+                    message.style.opacity = '0';  // Fade out the message
+                    setTimeout(function() {
+                        message.style.display = 'none';  // Remove it after fading out
+                    }, 500);  // Wait for the fade-out animation
+                }, 3000); // Wait for 3 seconds before hiding the message
+            });
+        };
+    </script>
+</body>
+</html>

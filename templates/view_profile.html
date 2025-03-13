@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ account.username }}'s Profile</title>
+    <!-- Подключаем стили (view_profile.css) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='view_profile.css') }}">
+    <script>
+        // Скрываем flash-сообщения через 2 секунды
+        window.onload = function() {
+            setTimeout(function() {
+                var flashMessages = document.querySelectorAll('.flash-messages');
+                flashMessages.forEach(function(message) {
+                    message.style.display = 'none';
+                });
+            }, 2000);
+        };
+    </script>
+</head>
+<body>
+
+<!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            <ul>
+                {% for category, message in messages %}
+                    <li class="flash {{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- Header with navigation -->
+<header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('artists') }}">ARTISTS</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('gallery') }}">GALLERY</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('main') }}">MAIN</a></li>
+            <li>|</li>
+            <li><a href="{{ url_for('my_account') }}">MY ACCOUNT</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Top line -->
+<div class="top-line"></div>
+
+<main>
+    <!-- Верхний блок с Amount of Artworks и Type of Art -->
+    <div class="top-info">
+        <!-- Блок с количеством работ -->
+        <div class="artwork-count-box">
+            <p>AMOUNT OF ARTWORKS</p>
+            <p class="count">
+                {{ account.artwork_count if account.artwork_count else 0 }}
+            </p>
+        </div>
+
+        <!-- Блок с типом искусства -->
+        <div class="type-of-art-box">
+            <p>TYPE OF ART</p>
+            <p class="type-text">
+                {{ account.art_type if account.art_type else 'Any' }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Основной блок с тремя колонками -->
+    <div class="main-content">
+
+        <!-- Левая колонка -->
+        <div class="left-column">
+            <!-- Аватар (pfp) -->
+            <div class="profile-pic">
+                {% if not account.profile_picture %}
+                    <!-- Если нет картинки -->
+                    <label>PROFILE PICTURE</label>
+                {% else %}
+                    <div class="uploaded-pic">
+                        <img src="{{ url_for('static', filename='uploads/' + account.profile_picture) }}"
+                             alt="Profile Picture"
+                             class="profile-img">
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Имя пользователя -->
+            <div class="username">
+                <p>{{ account.username }}</p>
+            </div>
+
+            <!-- CONTACT INFO (read-only) -->
+            <div class="contact-info">
+                <p class="contact_info_label">CONTACT INFO:</p>
+                <hr class="custom-hr">
+                <div class="contact-row">
+                    <label>EMAIL:</label>
+                    <span>{{ account.email if account.email else 'No email' }}</span>
+                </div>
+                <div class="contact-row">
+                    <label>PHONE:</label>
+                    <span>{{ account.phone if account.phone else 'No phone' }}</span>
+                </div>
+                <div class="contact-row">
+                    <label>INSTAGRAM:</label>
+                    <span>{{account.instagram if account.instagram else 'No Instagram' }}</span>
+                </div>
+            </div>
+        </div> <!-- /left-column -->
+
+        <!-- Центральная колонка: About Me -->
+        <div class="center-column">
+            <div class="about-me">
+                <h3>ABOUT ARTIST</h3>
+                <!-- Блок с текстом, только чтение -->
+                <div class="about-me-text">
+                    {{ account.about_me if account.about_me else '' }}
+                </div>
+            </div>
+        </div> <!-- /center-column -->
+
+        <!-- Правая колонка: Iconic Artwork -->
+        <div class="right-column">
+
+            <!-- Заголовок "MY ICONIC ARTWORK" -->
+            <div class="iconic-artwork-box">
+                <p>ARTIST'S ICONIC ARTWORK</p>
+            </div>
+
+            <div class="iconic-artwork-container">
+                {% if account.iconic_artwork %}
+                    <div class="uploaded-iconic">
+                        <img src="{{ url_for('static', filename='uploads/' + account.iconic_artwork) }}"
+                             alt="Iconic Artwork"
+                             class="iconic-artwork-img">
+                    </div>
+                {% else %}
+                    <label class="iconic-artwork-label">
+                        NO ICONIC ARTWORK
+                    </label>
+                {% endif %}
+            </div>
+
+            <!-- Right after the main-content or inside the same column, etc. -->
+            <div class="view-artworks-other">
+              <a href="{{ url_for('view_artworks_user', username=account.username) }}"
+                 style="text-decoration: none; color: inherit;">
+                <p>VIEW ARTIST'S ARTWORKS</p>
+              </a>
+            </div>
+
+        </div> <!-- /right-column -->
+
+    </div> <!-- /main-content -->
+
+</main>
+
+<!-- Bottom line -->
+<div class="bottom-line"></div>
+
+<!-- Footer -->
+<footer>
+    <p>© ITAC - ART GALLERY</p>
+    <p>CONTACT US: vdmisko8@gmail.com</p>
+</footer>
+
+</body>
+</html>

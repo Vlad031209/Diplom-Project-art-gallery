@@ -41,10 +41,6 @@ __pycache__/
 *.log
 *.tmp
 
-# Ignore SQLite database files (if not needed in the repo)
-*.sqlite3
-*.db
-
 # Ignore static file uploads (if they shouldn't be tracked)
 static/uploads/
 media/
